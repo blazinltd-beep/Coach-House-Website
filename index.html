@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coach House Music Studios — London</title>
+  <meta name="description" content="Boutique recording studio in London. Dual rooms, premium signal chain, private sessions. Book Studio A, B or full lockout." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #C8A96E;
+      --gold-dim: #9A7940;
+      --black: #0A0A0A;
+      --surface: #111111;
+      --surface2: #161616;
+      --border: #1E1E1E;
+      --text: #F0EDE8;
+      --muted: #888;
+      --faint: #444;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+    section { background: var(--black); }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 40px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    nav.scrolled { background: rgba(10,10,10,0.92); border-color: var(--border); backdrop-filter: blur(12px); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo-mark {
+      width: 34px; height: 34px; background: var(--gold); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 15px; color: var(--black); letter-spacing: -0.02em;
+    }
+    .nav-name { font-size: 14px; font-weight: 600; letter-spacing: 0.01em; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      padding: 9px 22px; border: 1px solid var(--gold); border-radius: 6px;
+      font-size: 13px; font-weight: 600; color: var(--gold);
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; position: relative;
+      display: flex; align-items: flex-end;
+      padding: 0 40px 80px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('studio.jpg'), linear-gradient(135deg, #0d1a2a 0%, #0a0f1a 40%, #1a0d08 100%);
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.55);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.3) 50%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 760px; }
+    .hero-eyebrow {
+      display: inline-block; margin-bottom: 20px;
+      font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(200,169,110,0.3); border-radius: 20px;
+      padding: 5px 14px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 600; line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: 16px; color: rgba(240,237,232,0.7); line-height: 1.6;
+      max-width: 480px; margin-bottom: 40px; font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 14px 32px; background: var(--gold); color: var(--black);
+      border-radius: 8px; font-weight: 700; font-size: 14px;
+      transition: all 0.2s; letter-spacing: 0.01em;
+    }
+    .btn-primary:hover { background: #d4b87a; transform: translateY(-1px); }
+    .btn-ghost {
+      padding: 14px 32px; border: 1px solid rgba(240,237,232,0.2); color: var(--text);
+      border-radius: 8px; font-weight: 500; font-size: 14px;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(240,237,232,0.75); }
+    .hero-scroll {
+      position: absolute; bottom: 32px; right: 40px; z-index: 1;
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+      color: var(--faint); text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-scroll::before { content: ''; display: block; width: 40px; height: 1px; background: var(--faint); }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 40px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 600; line-height: 1.05;
+      letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-body { font-size: 15px; color: rgba(240,237,232,0.65); line-height: 1.75; max-width: 560px; font-weight: 300; }
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 32px 40px;
+    }
+    .stats-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 0; flex-wrap: wrap; }
+    .stat { flex: 1; min-width: 160px; padding: 0 40px 0 0; }
+    .stat:not(:last-child) { border-right: 1px solid var(--border); margin-right: 40px; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 600; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ── ROOMS ── */
+    .rooms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 60px; }
+    .room-card {
+      background: var(--surface); padding: 48px 40px;
+      position: relative; overflow: hidden;
+      transition: background 0.2s;
+    }
+    .room-card:hover { background: var(--surface2); }
+    .room-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .room-tag {
+      display: inline-block; margin-bottom: 20px;
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold-dim);
+      border: 1px solid rgba(200,169,110,0.2); padding: 4px 12px; border-radius: 20px;
+    }
+    .room-name { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .room-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; font-weight: 300; }
+    .room-gear { display: flex; flex-wrap: wrap; gap: 8px; }
+    .gear-pill {
+      font-size: 11px; color: var(--faint); background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px;
+      font-family: 'DM Mono', monospace;
+    }
+    .room-rate { margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .rate-from { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+    .rate-price { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--gold); line-height: 1; margin-top: 4px; }
+    .rate-sub { font-size: 11px; color: var(--faint); margin-top: 4px; }
+
+    /* ── SIGNAL CHAIN ── */
+    .chain-section { background: var(--surface); }
+    .chain-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; margin-top: 48px; }
+    .chain-item { background: var(--black); padding: 28px 24px; }
+    .chain-cat { font-size: 10px; color: var(--gold-dim); font-family: 'DM Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+    .chain-names { font-size: 14px; color: var(--text); line-height: 1.6; }
+    .chain-arrow {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--faint);
+    }
+
+    /* ── CREDITS ── */
+    .credits-section { border-top: 1px solid var(--border); }
+    .credits-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 64px; }
+    .credits-roll {
+      margin-top: 0; display: flex; flex-wrap: wrap; gap: 12px;
+    }
+    .credit-name {
+      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500;
+      color: rgba(240,237,232,0.75); transition: color 0.2s; cursor: default;
+      letter-spacing: -0.01em;
+    }
+    .credit-name:hover { color: var(--text); }
+    .credit-sep { color: var(--border); font-size: 22px; line-height: 1.4; }
+
+    /* ── RATES ── */
+    .rates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+    .rate-card { background: var(--surface); padding: 36px 32px; }
+    .rate-card.highlight { background: var(--surface2); border: 1px solid rgba(200,169,110,0.2); }
+    .rate-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 16px; }
+    .rate-card-room { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin-bottom: 8px; }
+    .rate-card-type { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .rate-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .rate-row:last-child { border-bottom: none; }
+    .rate-row-label { font-size: 12px; color: var(--muted); }
+    .rate-row-price { font-size: 14px; font-weight: 600; color: var(--text); font-family: 'DM Mono', monospace; }
+    .rate-note { font-size: 11px; color: var(--faint); margin-top: 16px; line-height: 1.6; }
+
+    /* ── BOOKING CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #0f0c08 0%, #1a1208 50%, #0a0a0a 100%);
+      border-top: 1px solid rgba(200,169,110,0.15);
+      text-align: center; padding: 120px 40px;
+    }
+    .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 6vw, 72px); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .cta-title em { font-style: italic; color: var(--gold); }
+    .cta-sub { font-size: 16px; color: rgba(240,237,232,0.6); margin-bottom: 48px; font-weight: 300; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .booking-info { display: flex; gap: 40px; justify-content: center; margin-top: 48px; flex-wrap: wrap; }
+    .booking-info-item { font-size: 12px; color: var(--faint); font-family: 'DM Mono', monospace; letter-spacing: 0.06em; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 48px 40px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; color: var(--faint); transition: color 0.2s; font-family: 'DM Mono', monospace; letter-spacing: 0.06em; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 11px; color: var(--faint); font-family: 'DM Mono', monospace; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nb-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 72px 20px; }
+      .stats-bar { padding: 28px 20px; }
+      .stat { min-width: 120px; padding: 0 20px 0 0; margin-right: 20px !important; }
+      .hero { padding: 0 20px 64px; }
+      .hero-scroll { display: none; }
+      .rooms-grid { grid-template-columns: 1fr; }
+      .room-card.featured { grid-column: span 1; grid-template-columns: 1fr; gap: 32px; }
+      .chain-grid { grid-template-columns: 1fr 1fr; }
+      .chain-arrow { display: none; }
+      .credits-intro { grid-template-columns: 1fr; gap: 40px; }
+      .rates-grid { grid-template-columns: 1fr; }
+      footer { padding: 40px 20px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+
+    /* ── FADE IN ── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">CH</div>
+    <span class="nav-name">Coach House Music</span>
+  </div>
+  <div class="nav-links">
+    <a href="#studios">Studios</a>
+    <a href="#equipment">Equipment</a>
+    <a href="#rates">Rates</a>
+    <a href="#credits">Credits</a>
+    <a href="https://booking.coachhousemusic.uk" class="nav-cta">Book a Session</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Boutique Recording Studio · London</div>
+    <h1 class="hero-title">Where records<br>get <em>made.</em></h1>
+    <p class="hero-sub">Dual rooms. Premium signal chain. Private sessions. Built for artists who take their sound seriously.</p>
+    <div class="hero-actions">
+      <a href="https://booking.coachhousemusic.uk" class="btn-primary">Book a Session</a>
+      <a href="#studios" class="btn-ghost">Explore the Studio</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat fade-in">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Studio Rooms</div>
+    </div>
+    <div class="stat fade-in">
+      <div class="stat-num">14+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat fade-in">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Sessions Possible</div>
+    </div>
+    <div class="stat fade-in">
+      <div class="stat-num">1</div>
+      <div class="stat-label">Focus: Your Sound</div>
+    </div>
+  </div>
+</div>
+
+<!-- STUDIOS -->
+<section id="studios">
+  <div class="container">
+    <div class="section-label fade-in">The Rooms</div>
+    <h2 class="section-title fade-in">Two rooms.<br><em>One standard.</em></h2>
+    <p class="section-body fade-in">Every session at Coach House is private. No double-booking, no shared spaces. You get the room, the gear, and the focus.</p>
+
+    <div class="rooms-grid" style="margin-top:60px;">
+
+      <!-- Room A -->
+      <div class="room-card fade-in">
+        <div class="room-tag">Studio A · Main Room</div>
+        <div class="room-name">The Main Room</div>
+        <div class="room-desc">Primary recording space with full signal chain and premium monitoring. Built for recording and production at the highest level.</div>
+        <div class="room-gear">
+          <span class="gear-pill">Neve 1073x</span>
+          <span class="gear-pill">Neumann U87i</span>
+          <span class="gear-pill">Shure SM7B</span>
+          <span class="gear-pill">Tube-Tech CL1B</span>
+          <span class="gear-pill">Adam A77X</span>
+          <span class="gear-pill">Yamaha Upright Piano</span>
+          <span class="gear-pill">Grandmother Moog</span>
+          <span class="gear-pill">RME UFX II</span>
+        </div>
+        <div class="room-rate">
+          <div class="rate-from">Dry Hire from</div>
+          <div class="rate-price">£55–£70 <span style="font-size:18px;color:var(--muted)">/hr</span></div>
+          <div class="rate-sub">Wet hire (with engineer) from £90–£120/hr</div>
+        </div>
+      </div>
+
+      <!-- Room B -->
+      <div class="room-card fade-in">
+        <div class="room-tag">Studio B · Secondary Room</div>
+        <div class="room-name">The Writing Room</div>
+        <div class="room-desc">Compact treated space ideal for writing sessions, production, vocal takes and DJ sets. Fully equipped with its own booth access.</div>
+        <div class="room-gear">
+          <span class="gear-pill">Rode NT1-A</span>
+          <span class="gear-pill">Prism Audio</span>
+          <span class="gear-pill">Pioneer XDJ-XZ</span>
+          <span class="gear-pill">Yamaha HS8</span>
+          <span class="gear-pill">Vocal Booth</span>
+          <span class="gear-pill">Drum Pads</span>
+        </div>
+        <div class="room-rate">
+          <div class="rate-from">Dry Hire from</div>
+          <div class="rate-price">£35–£50 <span style="font-size:18px;color:var(--muted)">/hr</span></div>
+          <div class="rate-sub">Wet hire (with engineer) from £65–£85/hr</div>
+        </div>
+      </div>
+
+      <!-- Both Rooms -->
+      <div class="room-card featured fade-in">
+        <div>
+          <div class="room-tag">Full Lockout</div>
+          <div class="room-name">Both Rooms</div>
+          <div class="room-desc">Exclusive use of the entire studio — Studio A, Studio B, vocal booth, garden access. Ideal for label sessions, album camps and large productions that need space to breathe.</div>
+          <div class="room-gear">
+            <span class="gear-pill">Studio A + B</span>
+            <span class="gear-pill">Vocal Booth</span>
+            <span class="gear-pill">Garden Access</span>
+            <span class="gear-pill">Private Sessions</span>
+            <span class="gear-pill">Full Team Available</span>
+          </div>
+        </div>
+        <div>
+          <div style="display:grid;gap:16px;">
+            <div style="background:var(--black);padding:24px;border-radius:2px;">
+              <div class="rate-from">Dry Hire</div>
+              <div class="rate-price" style="font-size:28px;">£1,100 <span style="font-size:16px;color:var(--muted)">/day</span></div>
+            </div>
+            <div style="background:var(--black);padding:24px;border-radius:2px;">
+              <div class="rate-from">With Engineer</div>
+              <div class="rate-price" style="font-size:28px;">£1,200 <span style="font-size:16px;color:var(--muted)">/day</span></div>
+            </div>
+            <div style="background:rgba(200,169,110,0.06);padding:24px;border-radius:2px;border:1px solid rgba(200,169,110,0.15);">
+              <div class="rate-from">Premium Session · Full Team</div>
+              <div class="rate-price" style="font-size:28px;">£1,300–1,400 <span style="font-size:16px;color:var(--muted)">/day</span></div>
+              <div class="rate-sub" style="margin-top:8px;">Engineer + assistant + full session support</div>
+            </div>
+          </div>
+          <a href="https://booking.coachhousemusic.uk" class="btn-primary" style="display:inline-block;margin-top:24px;">Book a Lockout</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- SIGNAL CHAIN -->
+<section id="equipment" class="chain-section">
+  <div class="container">
+    <div class="section-label fade-in">Signal Chain</div>
+    <h2 class="section-title fade-in">The <em>right tools.</em></h2>
+    <p class="section-body fade-in">Every piece of gear in Studio A is chosen for a reason. The chain is clean, fast and built to translate.</p>
+    <div class="chain-grid" style="margin-top:48px;">
+      <div class="chain-item fade-in">
+        <div class="chain-cat">Microphones</div>
+        <div class="chain-names">Neumann U87i<br>Shure SM7B</div>
+      </div>
+      <div class="chain-item fade-in">
+        <div class="chain-cat">Preamp</div>
+        <div class="chain-names">AMS Neve<br>1073x</div>
+      </div>
+      <div class="chain-item fade-in">
+        <div class="chain-cat">Compression</div>
+        <div class="chain-names">Tube-Tech<br>CL1B</div>
+      </div>
+      <div class="chain-item fade-in">
+        <div class="chain-cat">Converters</div>
+        <div class="chain-names">RME UFX II<br>Prism Audio</div>
+      </div>
+      <div class="chain-item fade-in">
+        <div class="chain-cat">Monitoring</div>
+        <div class="chain-names">Adam A77X<br>Focal Twin 6<br>Adam A8X</div>
+      </div>
+    </div>
+    <div style="margin-top:2px;" class="chain-grid">
+      <div class="chain-item fade-in" style="grid-column:span 5;display:flex;gap:32px;flex-wrap:wrap;align-items:center;">
+        <div>
+          <div class="chain-cat">Instruments</div>
+          <div class="chain-names">Yamaha Upright Piano · Grandmother Moog · Renaissance MPC · Harmonium · Turntable</div>
+        </div>
+        <div style="margin-left:auto;">
+          <div class="chain-cat">DJ Setup</div>
+          <div class="chain-names">Pioneer XDJ-XZ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CREDITS -->
+<section id="credits" class="credits-section">
+  <div class="container">
+    <!-- Naughty Boy feature -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:80px;padding-bottom:80px;border-bottom:1px solid var(--border);" class="fade-in nb-grid">
+      <div>
+        <div class="section-label">Home Studio</div>
+        <h2 class="section-title">Home to<br><em>Naughty Boy.</em></h2>
+        <p class="section-body" style="margin-bottom:20px;">
+          Coach House Music Studios is the creative base of Naughty Boy (Shahid Khan) — one of the most celebrated British producers of his generation. Born and raised in Watford, he used £44,000 in TV game show winnings to build his first studio and launch a career that would go on to define a decade of UK music.
+        </p>
+        <p class="section-body" style="margin-bottom:20px;">
+          His debut album <em>Hotel Cabana</em> (2013) spawned the UK number-one single &quot;La La La&quot; featuring Sam Smith, and the top five hit &quot;Runnin' (Lose It All)&quot; featuring Beyoncé and Arrow Benjamin. He produced Emeli Sandé's landmark debut album <em>Our Version of Events</em> — one of the best-selling albums by a British female artist in the 21st century, spending over 10 weeks at number one on the UK Albums Chart.
+        </p>
+        <p class="section-body">
+          His production credits span Sam Smith, Beyoncé, Leona Lewis, Cheryl, Jennifer Hudson, Tinie Tempah, Zayn, Rihanna, Wiz Khalifa, Ed Sheeran, Wretch 32, Professor Green, JLS, Alesha Dixon and more — making him one of the most versatile and in-demand producers to ever come out of the UK.
+        </p>
+        <div style="margin-top:28px;padding:16px 20px;background:var(--surface);border-left:2px solid var(--gold);border-radius:0 4px 4px 0;">
+          <div style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Studio Management</div>
+          <div style="font-size:14px;color:var(--text);font-weight:500;">Managed by Blazin Beats</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Sony ATV · 14+ years professional production</div>
+        </div>
+      </div>
+      <div style="background:var(--surface);padding:40px;border-radius:2px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--gold);margin-bottom:20px;line-height:1.5;">
+          "A space built for real music. No compromises."
+        </div>
+        <div style="display:grid;gap:16px;">
+          <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);">
+            <span style="font-size:12px;color:var(--muted);">GRAMMY Nominated</span>
+            <span style="font-size:12px;color:var(--text);font-family:'DM Mono',monospace;">Producer / Songwriter</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);">
+            <span style="font-size:12px;color:var(--muted);">Based</span>
+            <span style="font-size:12px;color:var(--text);font-family:'DM Mono',monospace;">London, UK</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);">
+            <span style="font-size:12px;color:var(--muted);">Label</span>
+            <span style="font-size:12px;color:var(--text);font-family:'DM Mono',monospace;">Sony Music</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:12px 0;">
+            <span style="font-size:12px;color:var(--muted);">Known For</span>
+            <span style="font-size:12px;color:var(--text);font-family:'DM Mono',monospace;">La La La · Runnin' · Hotel Cabana</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="credits-intro">
+      <div>
+        <div class="section-label fade-in">Production Credits</div>
+        <h2 class="section-title fade-in">Music that<br><em>moves people.</em></h2>
+        <p class="section-body fade-in">Over 14 years of professional production. Credits spanning platinum records, chart toppers and critically acclaimed albums across every major market.</p>
+      </div>
+      <div class="credits-roll fade-in">
+        <span class="credit-name">Beyoncé</span><span class="credit-sep">·</span>
+        <span class="credit-name">Sam Smith</span><span class="credit-sep">·</span>
+        <span class="credit-name">Emeli Sandé</span><span class="credit-sep">·</span>
+        <span class="credit-name">Jess Glynne</span><span class="credit-sep">·</span>
+        <span class="credit-name">Leona Lewis</span><span class="credit-sep">·</span>
+        <span class="credit-name">Naughty Boy</span><span class="credit-sep">·</span>
+        <span class="credit-name">Ed Sheeran</span><span class="credit-sep">·</span>
+        <span class="credit-name">Zayn</span><span class="credit-sep">·</span>
+        <span class="credit-name">Wiz Khalifa</span><span class="credit-sep">·</span>
+        <span class="credit-name">Cheryl</span><span class="credit-sep">·</span>
+        <span class="credit-name">Jennifer Hudson</span><span class="credit-sep">·</span>
+        <span class="credit-name">Tinie Tempah</span><span class="credit-sep">·</span>
+        <span class="credit-name">Rihanna</span><span class="credit-sep">·</span>
+        <span class="credit-name">Popcaan</span><span class="credit-sep">·</span>
+        <span class="credit-name">Wretch 32</span><span class="credit-sep">·</span>
+        <span class="credit-name">Professor Green</span><span class="credit-sep">·</span>
+        <span class="credit-name">Alesha Dixon</span><span class="credit-sep">·</span>
+        <span class="credit-name">JLS</span><span class="credit-sep">·</span>
+        <span class="credit-name">Callum Scott</span><span class="credit-sep">·</span>
+        <span class="credit-name">Shenseea</span><span class="credit-sep">·</span>
+        <span class="credit-name">Mike Posner</span><span class="credit-sep">·</span>
+        <span class="credit-name">Tinashe</span><span class="credit-sep">·</span>
+        <span class="credit-name">Kyla</span><span class="credit-sep">·</span>
+        <span class="credit-name">KYLE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- RATES -->
+<section id="rates">
+  <div class="container">
+    <div class="section-label fade-in">Pricing</div>
+    <h2 class="section-title fade-in">Simple.<br><em>Transparent.</em></h2>
+    <p class="section-body fade-in">Peak rates apply Fri–Sun and Mon–Thu after 4PM. Off-peak (Mon–Thu before 4PM) is 15% less. Minimum booking 2 hours.</p>
+
+    <div class="rates-grid">
+      <div class="rate-card fade-in">
+        <div class="rate-card-tag">Studio A</div>
+        <div class="rate-card-room">Main Room</div>
+        <div class="rate-card-type">Dry Hire · No Engineer</div>
+        <div class="rate-row"><span class="rate-row-label">Hourly</span><span class="rate-row-price">£75/hr</span></div>
+        <div class="rate-row"><span class="rate-row-label">Half Day (5hrs)</span><span class="rate-row-price">£319</span></div>
+        <div class="rate-row"><span class="rate-row-label">Full Day (10hrs)</span><span class="rate-row-price">£638</span></div>
+        <p class="rate-note">Wet hire (engineer included): £120/hr · £510 half day · £1,020 full day · Off-peak Mon–Thu before 4PM: 15% off</p>
+      </div>
+      <div class="rate-card fade-in">
+        <div class="rate-card-tag">Studio B</div>
+        <div class="rate-card-room">Writing Room</div>
+        <div class="rate-card-type">Dry Hire · No Engineer</div>
+        <div class="rate-row"><span class="rate-row-label">Hourly</span><span class="rate-row-price">£45/hr</span></div>
+        <div class="rate-row"><span class="rate-row-label">Half Day (5hrs)</span><span class="rate-row-price">£191</span></div>
+        <div class="rate-row"><span class="rate-row-label">Full Day (10hrs)</span><span class="rate-row-price">£383</span></div>
+        <p class="rate-note">Wet hire (engineer included): £85/hr · £361 half day · £723 full day · Off-peak Mon–Thu before 4PM: 15% off</p>
+      </div>
+      <div class="rate-card highlight fade-in">
+        <div class="rate-card-tag">Full Lockout</div>
+        <div class="rate-card-room">Both Rooms</div>
+        <div class="rate-card-type">Exclusive Studio Access</div>
+        <div class="rate-row"><span class="rate-row-label">Dry Hire</span><span class="rate-row-price">£1,000/day</span></div>
+        <div class="rate-row"><span class="rate-row-label">With Engineer</span><span class="rate-row-price">£1,200/day</span></div>
+        <div class="rate-row"><span class="rate-row-label">Premium Session</span><span class="rate-row-price">£1,300–£1,400</span></div>
+        <p class="rate-note">Add-ons: Additional engineer £25–£30/hr · Assistant £15–£20/hr · Mixing & mastering POA</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;padding:20px 24px;background:var(--surface);border-radius:2px;display:flex;gap:32px;flex-wrap:wrap;" class="fade-in">
+      <div style="font-size:12px;color:var(--muted);">📋 Deposit required to confirm</div>
+      <div style="font-size:12px;color:var(--muted);">⏰ 48hrs cancellation notice</div>
+      <div style="font-size:12px;color:var(--muted);">📅 Balance due on session day</div>
+      <div style="font-size:12px;color:var(--muted);">💷 Rates subject to VAT</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-label fade-in" style="display:inline-block;">Ready when you are</div>
+    <h2 class="cta-title fade-in">Book your<br><em>session.</em></h2>
+    <p class="cta-sub fade-in">Submit a request online. The team responds within 24 hours.</p>
+    <div class="cta-actions fade-in">
+      <a href="https://booking.coachhousemusic.uk" class="btn-primary" style="font-size:15px;padding:16px 40px;">Book Online Now</a>
+      <a href="https://wa.me/447507123456" class="btn-ghost" style="font-size:15px;padding:16px 40px;">WhatsApp Us</a>
+    </div>
+    <div class="booking-info fade-in">
+      <span class="booking-info-item">@coachhousemusicstudios</span>
+      <span class="booking-info-item">07507 123 456</span>
+      <span class="booking-info-item">London, UK</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Coach House Music Studios</div>
+    <div class="footer-links">
+      <a href="#studios">Studios</a>
+      <a href="#rates">Rates</a>
+      <a href="https://booking.coachhousemusic.uk">Book</a>
+      <a href="https://instagram.com/coachhousemusicstudios">Instagram</a>
+    </div>
+    <div class="footer-copy">© 2026 Coach House Music Studios</div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav')
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40)
+  })
+
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80)
+        observer.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.1 })
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el))
+</script>
+</body>
+</html>
